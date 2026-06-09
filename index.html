@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iliaca — Hello, potential new friend</title>
+<meta name="description" content="A silly little website about Iliaca, looking to meet new humans in SF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f1ea;
+    --ink:#141414;
+    --accent:#5b3fc4;
+    --line:#141414;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Jost",system-ui,sans-serif;
+    font-weight:400;
+    font-size:18px;
+    line-height:1.55;
+    letter-spacing:.01em;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  /* ---------- HERO ---------- */
+  header{
+    border-bottom:3px solid var(--line);
+    padding:64px 0 0;
+  }
+  .hero{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:40px;
+    align-items:end;
+    padding-bottom:48px;
+  }
+  .hero-greet{
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    font-weight:600;
+    font-size:13px;
+    color:var(--accent);
+    margin:0 0 18px;
+  }
+  .hero h1{
+    font-weight:700;
+    font-size:clamp(54px,11vw,104px);
+    line-height:.92;
+    letter-spacing:-.02em;
+    margin:0;
+    text-transform:uppercase;
+  }
+  .hero h1 .dot{color:var(--accent);}
+  .shapes{display:flex;gap:14px;margin-top:26px;align-items:center;}
+  .sq{width:34px;height:34px;background:var(--accent);}
+  .ci{width:34px;height:34px;border:5px solid var(--ink);border-radius:50%;}
+  .tr{width:0;height:0;border-left:19px solid transparent;border-right:19px solid transparent;border-bottom:34px solid var(--ink);}
+
+  .photo-frame{
+    position:relative;
+    border:3px solid var(--line);
+    background:var(--accent);
+  }
+  .photo-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    mix-blend-mode:normal;
+    transform:translate(10px,10px);
+    border:3px solid var(--line);
+  }
+  .photo-cap{
+    margin-top:18px;
+    font-size:13px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:500;
+  }
+
+  /* ---------- MANIFESTO (What / Why / How) ---------- */
+  .manifesto{padding:54px 0;border-bottom:3px solid var(--line);}
+  .row{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:24px;
+    padding:22px 0;
+    border-top:1px solid var(--ink);
+  }
+  .row:first-child{border-top:none;}
+  .row .k{
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    font-size:22px;
+    color:var(--accent);
+  }
+  .row .v{font-size:20px;line-height:1.5;}
+
+  /* ---------- SECTIONS ---------- */
+  section.block{padding:54px 0;border-bottom:3px solid var(--line);}
+  .block h2{
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:clamp(28px,5vw,42px);
+    margin:0 0 6px;
+    line-height:1;
+  }
+  .block h2 .mark{
+    display:inline-block;
+    width:.5em;height:.5em;
+    background:var(--accent);
+    margin-left:.18em;
+    vertical-align:baseline;
+  }
+  .subhead{
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:12px;
+    font-weight:600;
+    color:var(--accent);
+    margin:30px 0 10px;
+  }
+  ul.list{list-style:none;margin:14px 0 0;padding:0;}
+  ul.list li{
+    position:relative;
+    padding:10px 0 10px 30px;
+    border-top:1px solid rgba(20,20,20,.18);
+  }
+  ul.list li:first-child{border-top:none;}
+  ul.list li::before{
+    content:"";
+    position:absolute;
+    left:0;top:18px;
+    width:11px;height:11px;
+    background:var(--accent);
+  }
+  ul.list li b{font-weight:600;}
+
+  /* two truths grid */
+  .truths{display:grid;grid-template-columns:1fr;gap:0;margin-top:14px;}
+  .truths .t{
+    display:flex;gap:18px;align-items:baseline;
+    padding:16px 0;border-top:1px solid rgba(20,20,20,.18);
+  }
+  .truths .t:first-child{border-top:none;}
+  .truths .t .n{
+    font-weight:700;color:var(--accent);font-size:24px;
+    min-width:34px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{padding:54px 0;border-bottom:3px solid var(--line);}
+  .contact p{font-size:20px;max-width:640px;margin:0 0 22px;}
+  a.mail{
+    display:inline-block;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:clamp(22px,4vw,32px);
+    color:var(--bg);
+    background:var(--accent);
+    text-decoration:none;
+    padding:14px 22px;
+    border:3px solid var(--line);
+  }
+  a.mail:hover{background:var(--ink);}
+
+  /* ---------- TESTIMONY ---------- */
+  .testimony{padding:60px 0 80px;}
+  .testimony .label{
+    text-transform:uppercase;letter-spacing:.2em;font-size:12px;
+    font-weight:600;color:var(--accent);margin-bottom:20px;
+  }
+  blockquote{
+    margin:0;
+    border-left:8px solid var(--accent);
+    padding:6px 0 6px 28px;
+    font-style:italic;
+    font-size:clamp(20px,3.2vw,26px);
+    line-height:1.5;
+  }
+  .testimony .sig{
+    font-style:normal;
+    margin-top:18px;
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    padding-left:36px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:720px){
+    body{font-size:17px;}
+    .hero{grid-template-columns:1fr;gap:34px;align-items:start;}
+    .row{grid-template-columns:1fr;gap:6px;}
+    .row .k{font-size:20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-text">
+        <p class="hero-greet">Hello, potential new friend</p>
+        <h1>I'm<br>Iliaca<span class="dot">.</span></h1>
+        <div class="shapes" aria-hidden="true">
+          <span class="ci"></span>
+          <span class="sq"></span>
+          <span class="tr"></span>
+        </div>
+      </div>
+      <div>
+        <div class="photo-frame">
+          <img src="bikePhotobyCecilia.JPEG" alt="Iliaca on a foggy ride, arms out, grinning, straddling a lilac road bike.">
+        </div>
+        <p class="photo-cap">Foggy summit, very happy · photo by Cecilia</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <div class="manifesto">
+    <div class="wrap">
+      <div class="row">
+        <div class="k">What</div>
+        <div class="v">A website talking about me, revised by Reviewers #1.</div>
+      </div>
+      <div class="row">
+        <div class="k">Why</div>
+        <div class="v">All my dear friends in SF are busy caring for small humans, and I want to meet other humans that are not this kind of busy.</div>
+      </div>
+      <div class="row">
+        <div class="k">How</div>
+        <div class="v">I send the silly website link to my friends and they send it to their friends. If this is you: read a little bit, and if you find me potentially cool, let's hang.</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <h2>About me<span class="mark"></span></h2>
+      <p class="subhead">A few rapid-fire bullet points</p>
+      <ul class="list">
+        <li>High energy and passionate about life — but sometimes love to be a couch cat</li>
+        <li>Opinionated: gender norms serve to oppress women's brilliancy</li>
+        <li>Quirky / silly / whimsical: people say it takes 3D to know me</li>
+        <li>Spontaneous: let's do it!</li>
+        <li>Come with an accent, and people say I have a way with words</li>
+      </ul>
+
+      <p class="subhead">Things I like to do</p>
+      <ul class="list">
+        <li>Movement: biking, dancing and Pilates</li>
+        <li>Talking / walking with friends aimlessly</li>
+        <li>Learning: it's hard and it's great</li>
+        <li>Discussing deep matters: life, society, politics, the human mind</li>
+        <li>Outdoors — especially when a warm shower is included at the end of the day</li>
+        <li>Reading and listening to music</li>
+      </ul>
+
+      <p class="subhead">Moment in life</p>
+      <ul class="list">
+        <li>Creating boundaries to work less and have more fun</li>
+        <li>Proud of my path and planning for a fun future</li>
+        <li>Trying to make the best out of SF (this invite is part of it): would love to consume and/or create theater, dance, burlesque. Want to learn the trumpet, Chinese, …</li>
+        <li>Physical therapy is a constant, and makes me stronger</li>
+        <li>Loving my newly acquired empty bag of fucks to give</li>
+        <li>Proudly in therapy, learning how to enjoy myself even more</li>
+      </ul>
+
+      <p class="subhead">Journey</p>
+      <ul class="list">
+        <li>Born and raised on the border of Uruguay and Brazil — but I ain't your typical Rio Platense person, if that even exists</li>
+        <li>Proudly Canadian, more specifically Montrealer: Go Victoire Go! Go Habs Go!</li>
+        <li>My biggest achievement in life is how fucking awesome my friends are. They're all over the world, so traveling is always an adventure</li>
+        <li>My career achievements include a PhD, an interdisciplinary field, and 10 years in industry</li>
+        <li>I'm 45. I can't drink and do a century ride the next day anymore — but otherwise I'm doing great</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <h2>Two truths &amp; a lie<span class="mark"></span></h2>
+      <p class="subhead">Conversation starters</p>
+      <div class="truths">
+        <div class="t"><span class="n">01</span><span>Marina Abramović gave me work advice</span></div>
+        <div class="t"><span class="n">02</span><span>I interviewed Hugo Chávez</span></div>
+        <div class="t"><span class="n">03</span><span>I rode an entire Tour de France Femmes stage</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact">
+    <div class="wrap">
+      <p>If you want to walk and talk, or grab something to drink (tea, coffee, A or NA), my mailbox is open.</p>
+      <a class="mail" href="mailto:iliacacrest@pm.me">iliacacrest@pm.me</a>
+    </div>
+  </div>
+
+  <div class="testimony">
+    <div class="wrap">
+      <p class="label">A word from the reviewers</p>
+      <blockquote>
+        Any time you spend with Iliaca will most certainly not be boring, and there's a solid risk of you broadening your mind and becoming a better person while having a wonderful time doing something new and unexpected. She's a fun, brilliant, thoughtful, and strong human being full of life, humor, energy, and wisdom. Any attempt to describe her with words is like describing a rainbow as a clump of colors up in the air — so you should just take my advice and spend some time with her.
+      </blockquote>
+      <p class="sig">— Reviewer #1</p>
+    </div>
+  </div>
+
+</main>
+
+</body>
+</html>
